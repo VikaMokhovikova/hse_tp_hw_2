@@ -20,7 +20,7 @@ jobs:
         run:
           $GITHUB_WORKSPACE
       - name: run tests
-        run: python3 -m pytest test_functions
+        run: python3 -m unittest test_main.py
       
       
       
