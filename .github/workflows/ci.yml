@@ -1,24 +1,25 @@
 name: ci
 on:
   push:
-    branches: ['master', 'develop' ]
+    branches: ['main', 'develop' ]
   pull_request:
-    branches: ['master', 'develop']
+    branches: ['main', 'develop']
     
   workflow_dispatch:
 
 jobs:
   test:
     name: test
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - name: requirements install
-        run:
-          $GITHUB_WORKSPACE
+        run: |
+          cd $GITHUB_WORKSPACE
+          pip install -r requirements.txt
       - name: run tests
         run: python3 -m unittest test_main.py
       
